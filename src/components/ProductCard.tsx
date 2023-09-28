@@ -21,8 +21,8 @@ const ProductCard: React.FC<propsType> = ({ img, title, desc, price }) => {
         />
       </div>
       <div className="space-y-2 py-2">
-        <h2 className="text-accent font-medium uppercase">{title}</h2>
-        <p className="text-gray-500 max-w-[150px]">{desc}</p>
+        <h2 className="text-accent text-base font-medium uppercase">{title}</h2>
+        <p className="text-gray-500 text-xs xl:text-base max-w-[150px]">{desc}</p>
         <div className="font-bold flex gap-4">
             ${price}
             <del className="text-gray-500 font-normal">${parseInt(price) + 50}.00</del>

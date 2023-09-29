@@ -4,6 +4,7 @@ import {BiUser} from "react-icons/bi";
 import {FiHeart} from "react-icons/fi"
 import {HiOutlineShoppingBag} from "react-icons/hi"
 
+
 const HeaderMain = () => {
   return (
     <div className="border-b border-gray-200 py-6">

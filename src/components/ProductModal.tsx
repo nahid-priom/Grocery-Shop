@@ -7,6 +7,8 @@ import {
   ModalBody,
   Button,
 } from "@nextui-org/react";
+import {useRecoilState} from "recoil"
+import { carState } from "@/atom/cartState";
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -18,12 +20,23 @@ interface ProductModalProps {
     price: string;
   };
 }
+type CarItemType = {
+  img: string;
+  title: string;
+  desc: string;
+  price: string;
+};
 
 const ProductModal: React.FC<ProductModalProps> = ({
   isOpen,
   onClose, // Use onClose with the specified type
   product,
 }) => {
+
+  const [cartItem, setCartItem] = useRecoilState<CarItemType[]>(carState);
+  const addItemToCart = () =>{
+    setCartItem((prevState: CarItemType[]) => [...prevState, product]);
+  }
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} className="z-100">
       <ModalContent>
@@ -48,7 +61,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 className="bg-accent text-blackish font-bold my-4"
                 color="danger"
                 variant="light"
-                onClick={onClose} // Use onClick with the specified type
+                onClick={addItemToCart} // Use onClick with the specified type
               >
                 ADD TO CART
               </Button>

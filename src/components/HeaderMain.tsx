@@ -5,10 +5,10 @@ import { BiUser } from "react-icons/bi";
 import { FiHeart } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { useRecoilState } from "recoil";
-import { carState } from "@/atom/cartState";
+import { cartState } from "@/atom/cartState";
 
 const HeaderMain = () => {
-  const [cartItem] = useRecoilState(carState);
+  const [cartItem] = useRecoilState(cartState);
   return (
     <div className="border-b border-gray-200 py-6">
       <div className="container sm:flex justify-between items-center">

@@ -7,24 +7,29 @@ import {
   ModalBody,
   Button,
 } from "@nextui-org/react";
-import {useRecoilState} from "recoil"
-import { carState } from "@/atom/cartState";
+import { useRecoilState } from "recoil";
+import { cartState } from "@/atom/cartState";
+import toast from "react-hot-toast";
 
 interface ProductModalProps {
   isOpen: boolean;
   onClose: () => void; // Specify the type explicitly
   product: {
+    id: number;
     img: string;
     title: string;
     desc: string;
     price: string;
+    quantity: number;
   };
 }
 type CarItemType = {
+  id: number;
   img: string;
   title: string;
   desc: string;
   price: string;
+  quantity: number;
 };
 
 const ProductModal: React.FC<ProductModalProps> = ({
@@ -32,11 +37,21 @@ const ProductModal: React.FC<ProductModalProps> = ({
   onClose, // Use onClose with the specified type
   product,
 }) => {
-
-  const [cartItem, setCartItem] = useRecoilState<CarItemType[]>(carState);
-  const addItemToCart = () =>{
-    setCartItem((prevState: CarItemType[]) => [...prevState, product]);
-  }
+  const [cartItem, setCartItem] = useRecoilState<CarItemType[]>(cartState);
+  const addItemToCart = () => {
+    if (cartItem.findIndex((pro) => pro.id === product.id) === -1) {
+      setCartItem((prevState: CarItemType[]) => [...prevState, product]);
+    } else {
+      setCartItem((prevState: CarItemType[]) => {
+        return prevState.map((item) => {
+          return item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item;
+        });
+      });
+    }
+    toast(`${product.title} added to cart`)
+  };
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} className="z-100">
       <ModalContent>

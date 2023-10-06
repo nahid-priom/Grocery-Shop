@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 interface ProductCardProps {
+  id: number;
   img: string;
   title: string;
   desc: string;
@@ -11,6 +12,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   img,
   title,
   desc,

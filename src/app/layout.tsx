@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import MobNavbar from "@/components/MobNavbar";
 import Footer from "@/components/Footer";
 import { RecoilRoot } from "recoil";
+import {Toaster} from "react-hot-toast"
 
 
 export default function RootLayout({
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <RecoilRoot>
+          <Toaster position="bottom-center"/>
           <HeaderTop />
           <HeaderMain />
           <Navbar />
